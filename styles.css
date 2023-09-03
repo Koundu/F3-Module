@@ -1,0 +1,42 @@
+*{
+    margin: 0px;
+}
+
+
+#current-image-container{
+    background-color: black;
+    color: white;
+    margin: 10px;
+    padding: 10px;
+}
+
+h1,h2,p{
+    margin: 20px;
+}
+
+#current-image-container img{
+    width: 95%;
+    height: 480px;
+    margin-inline: 20px;
+}
+
+
+
+#search-form{
+    display: flex;
+    flex-direction: row;
+    margin: 20px;
+}
+
+#search-form #search-input{
+    margin-inline-start: 10px;
+    font-size: 15px;
+}
+#search-form button{
+    margin-inline-start: 15px;
+    cursor: pointer;
+}
+
+#search-history{
+    list-style-type: none;
+}
