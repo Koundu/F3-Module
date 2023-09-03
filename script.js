@@ -10,6 +10,7 @@ let title = dataContainer.querySelector('h2');
 let explanation = dataContainer.querySelector('p');
 const searchForm = document.getElementById("search-form");
 const search = document.getElementById('search');
+let searchData = [];
 
 fetch('https://api.nasa.gov/planetary/apod?api_key=NICsv12xSVOzyOszbH3dUED2LxosEqoDVHBtgvnd').then(function (response) {
 	// The API call was successful!
@@ -42,19 +43,22 @@ function getCurrentImageOfTheDay(str,src,tit,expl){
 //Function to get the Image and Store the date of the Image and display in the Search History
 function getImageOfTheDate(src,str){
     image.src = src;
-    localStorage.setItem("searches",JSON.stringify(str));
+    searchData.push(JSON.stringify(str))
+    localStorage.setItem("searches",searchData);
     console.log(localStorage.getItem("searches"));
+}
+
+
+search.addEventListener('click',(e)=>{
+    e.preventDefault();
+    const date = document.getElementById('search-input').value;
+    alert(date)
+    searchData.push(JSON.stringify(date));
+    alert(searchData.length);
+})
+
+function getSearchData(){
     var search = JSON.parse(localStorage.getItem("searches"));
     searchContainer.appendChild(dateHistory);
     dateHistory.innerHTML = search;
 }
-
-
-search.addEventListener('click',()=>{
-    const date = document.getElementById('search-input').value;
-    alert(date)
-    localStorage.setItem("searches",JSON.stringify(date));
-    var search = JSON.parse(localStorage.getItem("searches"));
-    searchContainer.appendChild(dateHistory);
-    dateHistory.innerHTML += search;
-})
